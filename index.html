@@ -37,7 +37,8 @@
     table {
         border-collapse: collapse;
         width: 100%;
-        min-width: 650px;
+        /* 由於欄位變窄，將 min-width 稍微調小 */
+        min-width: 550px; 
     }
 
     th, td {
@@ -46,10 +47,16 @@
         border-bottom: 1px solid #ddd;
     }
 
-    /* 新增 at% 欄位專用樣式 */
+    /* Composition 欄位專用樣式 */
+    .comp-column {
+        width: 120px; /* 設置 Composition 欄位寬度 */
+        min-width: 120px;
+    }
+
+    /* at% 欄位專用樣式 */
     .at-column {
-        width: 80px; /* 設置一個較窄的寬度 */
-        min-width: 80px; /* 確保最小寬度不變 */
+        width: 80px; /* 設置 at% 欄位寬度 */
+        min-width: 80px;
     }
     
     select, input[type=number] {
@@ -114,8 +121,8 @@
     <div class="table-container">
     <table id="elementsTable">
         <tr>
-            <th>Composition</th>
-            <th class="at-column">at%</th> <th>wt%</th>
+            <th class="comp-column">Composition</th> <th class="at-column">at%</th>
+            <th>wt%</th>
             <th>Delete</th>
         </tr>
     </table>
@@ -159,6 +166,7 @@ function addRow() {
 
     // Composition
     let cell1 = row.insertCell(0);
+    cell1.classList.add("comp-column"); // *** 將新的類別應用於 Composition 單元格 ***
     let select = document.createElement("select");
     for (let key in atomicWeights) {
         let opt = document.createElement("option");
@@ -170,7 +178,7 @@ function addRow() {
 
     // at%
     let cell2 = row.insertCell(1);
-    cell2.classList.add("at-column"); // *** 將新的類別應用於單元格 ***
+    cell2.classList.add("at-column"); 
     let input = document.createElement("input");
     input.type = "number";
     input.value = 0;
@@ -236,6 +244,8 @@ function calculate() {
         rows[i].cells[2].innerHTML = wt.toFixed(3) + "%";
     }
 }
+// 預設新增一行
+addRow();
 </script>
 
 </body>
