@@ -162,10 +162,10 @@
         <h3>💬 Composition</h3>
         
         <p class="string-label">at% </p>
-        <div class="string-output" id="atStringOutput">請先計算 wt%</div>
+        <div class="string-output" id="atStringOutput">Calculating at%</div>
         
         <p class="string-label">wt% </p>
-        <div class="string-output" id="wtStringOutput">請先計算 wt%</div>
+        <div class="string-output" id="wtStringOutput">Calculating wt%</div>
     </div>
     </div>
 
@@ -311,11 +311,11 @@ function calculateAndGenerate() {
         // 更新表格中的 wt% 欄位
         rows[i].cells[2].innerHTML = wt.toFixed(precision) + "%";
         
-        // at% 字串格式 (使用表格中的 at% 值，去除尾隨零): 70Ni-30Pt
+        // at% 字串格式 (使用表格中的 at% 值，去除尾隨零)
         const atValue = compositions[i - 1].at;
         atStringParts.push(`${atValue.toFixed(precision).replace(/\.?0+$/, '')}${compositions[i - 1].element}`);
 
-        // wt% 字串格式 (使用計算出的 wt% 值，去除尾隨零): 85.45Ni-14.55Pt
+        // wt% 字串格式 (使用計算出的 wt% 值，去除尾隨零)
         wtStringParts.push(`${wt.toFixed(precision).replace(/\.?0+$/, '')}${compositions[i - 1].element}`);
     }
     
