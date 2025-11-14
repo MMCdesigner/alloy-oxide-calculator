@@ -5,7 +5,6 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>at% → wt% Calculator</title>
 
-<!-- Google Material Design CSS -->
 <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
 
 <style>
@@ -47,6 +46,12 @@
         border-bottom: 1px solid #ddd;
     }
 
+    /* 新增 at% 欄位專用樣式 */
+    .at-column {
+        width: 80px; /* 設置一個較窄的寬度 */
+        min-width: 80px; /* 確保最小寬度不變 */
+    }
+    
     select, input[type=number] {
         width: 100%;
         padding: 10px;
@@ -110,8 +115,7 @@
     <table id="elementsTable">
         <tr>
             <th>Composition</th>
-            <th>at%</th>
-            <th>wt%</th>
+            <th class="at-column">at%</th> <th>wt%</th>
             <th>Delete</th>
         </tr>
     </table>
@@ -166,6 +170,7 @@ function addRow() {
 
     // at%
     let cell2 = row.insertCell(1);
+    cell2.classList.add("at-column"); // *** 將新的類別應用於單元格 ***
     let input = document.createElement("input");
     input.type = "number";
     input.value = 0;
